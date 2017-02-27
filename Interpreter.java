@@ -19,12 +19,21 @@ class Interpreter {
 		//Dungeon newDungeon = buildSampleDungeon();
 		System.out.println("What file is this Dungeon in? (Should be a .bork or .sav file)");
 		String fileName = scan.next(); scan.nextLine();
-		Dungeon newDungeon = new Dungeon(fileName);
-		CommandFactory commander = CommandFactory.instance();
 		GameState state = GameState.instance();
-		state.initialize(newDungeon);
+		Dungeon theDungeon = null;
+		if(fileName.split("\\.")[1].equals("sav"))
+		{
+			state.restore(fileName);
+			theDungeon = state.getDungeon();
+		}
+		else
+		{
+			theDungeon = new Dungeon(fileName);
+			state.initialize(theDungeon);
+		}
+		CommandFactory commander = CommandFactory.instance();
 		
-		System.out.println("Welcome to "+ newDungeon.getName() +".");
+		System.out.println("Welcome to "+ theDungeon.getName() +".");
 		System.out.println(state.getAdventurersCurrentRoom().describe());
 		
 		String input = promptUser(scan);

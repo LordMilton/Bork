@@ -123,6 +123,8 @@ public class Room {
 	 */
 	void restoreState(Scanner scan)
 	{
+		scan.nextLine();
 		beenHere = true;
+		scan.nextLine();
 	}
 }

@@ -117,11 +117,12 @@ class GameState {
 			//Removes "save data" line
 			scan.nextLine();
 			
-			String filePath = scan.nextLine().split(" ")[1];
+			String filePath = scan.nextLine().split(" ")[2];
 			this.initialize(new Dungeon(filePath));
 			dungeon.restoreState(scan);
 			String nextLine = scan.nextLine();
-			adventurersCurrentRoom = dungeon.getRoom(nextLine.split("=")[1].substring(1));
+			String room = nextLine.split(":")[1].substring(1);
+			adventurersCurrentRoom = dungeon.getRoom(room);
 			
 		}catch(FileNotFoundException e){
 			System.err.println("Could not access .sav or .bork File");

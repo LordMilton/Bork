@@ -38,7 +38,7 @@ public class Dungeon {
 		String info = scan.nextLine();
 		if(!info.equals("Bork v2.0"))
 		{
-			System.err.println("This Dungeon file is incompatible with the current Bork version.");
+			System.err.println("The Dungeon file \""+ fileName +"\" is incompatible with the current Bork version.");
 			System.exit(0);
 		}
 		
@@ -149,6 +149,7 @@ public class Dungeon {
 		while(roomsLeft)
 		{
 			String nextRoomName = scan.nextLine();
+			nextRoomName = nextRoomName.substring(0, nextRoomName.length() - 1);
 			try{
 				getRoom(nextRoomName.substring(0, nextRoomName.length())).restoreState(scan);
 			}catch(NoRoomException e){
